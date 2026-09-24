@@ -72,8 +72,10 @@ const greenApiProxy = {
   },
 }
 
-export default defineConfig(async () => {
-  await freeListenPort(DEV_PORT)
+export default defineConfig(async ({ command }) => {
+  if (command === 'serve') {
+    await freeListenPort(DEV_PORT)
+  }
 
   return {
     plugins: [react(), stopWhenBrowserCloses()],

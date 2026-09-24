@@ -8,27 +8,16 @@ type RequestOptions = {
 }
 
 const GREEN_API_URL_HEADER = 'X-Green-Api-Url'
+const GREEN_API_PATH_HEADER = 'X-Green-Api-Path'
 
-const shouldUseLocalProxy = (): boolean => {
-  if (typeof window === 'undefined') {
-    return false
-  }
-
-  return window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+const getGreenApiPath = (credentials: Credentials, path: string): string => {
+  const parsed = new URL(credentials.apiUrl.replace(/\/$/, ''))
+  const basePath = parsed.pathname.replace(/\/$/, '')
+  return `${basePath}/waInstance${credentials.idInstance}${path}`
 }
 
-const getRequestUrl = (credentials: Credentials, path: string): string => {
-  const apiUrl = credentials.apiUrl.replace(/\/$/, '')
-  const suffix = `/waInstance${credentials.idInstance}${path}`
-
-  if (shouldUseLocalProxy()) {
-    const parsed = new URL(apiUrl)
-    const basePath = parsed.pathname.replace(/\/$/, '')
-    return `/green-api${basePath}${suffix}`
-  }
-
-  return `${apiUrl}${suffix}`
-}
+const getRequestUrl = (credentials: Credentials, path: string): string =>
+  `/green-api${getGreenApiPath(credentials, path)}`
 
 const getErrorMessage = (errorText: string, status: number): string => {
   if (!errorText) {
@@ -51,10 +40,8 @@ const requestJson = async <T>(credentials: Credentials, options: RequestOptions)
   const url = getRequestUrl(credentials, options.path)
   const headers: Record<string, string> = {
     'Content-Type': 'application/json',
-  }
-
-  if (shouldUseLocalProxy()) {
-    headers[GREEN_API_URL_HEADER] = credentials.apiUrl.replace(/\/$/, '')
+    [GREEN_API_URL_HEADER]: credentials.apiUrl.replace(/\/$/, ''),
+    [GREEN_API_PATH_HEADER]: getGreenApiPath(credentials, options.path),
   }
 
   try {
@@ -82,7 +69,7 @@ const requestJson = async <T>(credentials: Credentials, options: RequestOptions)
     }
 
     if (error instanceof TypeError) {
-      throw new Error('Нет связи с GREEN-API. Проверьте, что dev-сервер запущен, и попробуйте ещё раз')
+      throw new Error('Нет связи с GREEN-API. Проверьте интернет и apiUrl, затем попробуйте ещё раз')
     }
 
     throw error
