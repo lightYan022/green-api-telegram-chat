@@ -1,0 +1,163 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 340px;
+  min-width: 280px;
+  height: 100%;
+  background: #fff;
+  border-right: 1px solid #eaecf0;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 16px 8px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: -0.04em;
+}
+
+.logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: linear-gradient(135deg, #2aabee, #229ed9);
+  font-size: 16px;
+}
+
+.iconButton {
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  color: rgba(217, 45, 32, 0.72);
+  cursor: pointer;
+}
+
+.iconButton:hover,
+.iconButton:focus-visible {
+  background: rgba(217, 45, 32, 0.1);
+  color: rgba(217, 45, 32, 0.95);
+}
+
+.iconButton:focus-visible {
+  outline: 2px solid rgba(217, 45, 32, 0.45);
+  outline-offset: 1px;
+}
+
+.logoutIcon {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+.newChat {
+  margin: 8px 16px 12px;
+  height: 40px;
+  border: 0;
+  border-radius: 12px;
+  background: #2aabee;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0 8px 16px;
+  overflow: auto;
+  flex: 1;
+  min-height: 0;
+}
+
+.empty {
+  padding: 24px 12px;
+  color: #667085;
+  font-size: 14px;
+}
+
+.chatItem {
+  width: 100%;
+  display: flex;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 14px;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+
+.chatItem:hover {
+  background: #f2f4f7;
+}
+
+.chatItemActive {
+  background: #e8f1fd;
+}
+
+.avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  color: #fff;
+  font-weight: 700;
+  background: linear-gradient(135deg, #64748b, #94a3b8);
+}
+
+.meta {
+  min-width: 0;
+  flex: 1;
+  display: grid;
+  gap: 4px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.name {
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.time {
+  color: #98a2b3;
+  font-size: 12px;
+}
+
+.preview {
+  color: #667085;
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+  .sidebar {
+    width: 100%;
+    min-width: 0;
+  }
+}

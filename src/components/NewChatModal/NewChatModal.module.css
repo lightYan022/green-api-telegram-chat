@@ -1,0 +1,86 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  background: rgba(16, 24, 40, 0.45);
+  padding: 16px;
+}
+
+.dialog {
+  width: min(420px, 100%);
+  border-radius: 20px;
+  background: #fff;
+  padding: 24px;
+  box-shadow: 0 20px 60px rgba(16, 24, 40, 0.24);
+}
+
+.title {
+  margin: 0;
+  font-size: 20px;
+}
+
+.hint {
+  margin: 8px 0 18px;
+  color: #667085;
+  font-size: 14px;
+}
+
+.form {
+  display: grid;
+  gap: 12px;
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+  font-size: 13px;
+  color: #475467;
+}
+
+.field input {
+  height: 44px;
+  border: 1px solid #d0d5dd;
+  border-radius: 12px;
+  padding: 0 12px;
+  font: inherit;
+}
+
+.field input:focus {
+  outline: 2px solid #2aabee;
+  outline-offset: 1px;
+}
+
+.error {
+  margin: 0;
+  color: #d92d20;
+  font-size: 13px;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.primary,
+.secondary {
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.primary {
+  border: 0;
+  background: #2aabee;
+  color: #fff;
+}
+
+.secondary {
+  border: 1px solid #d0d5dd;
+  background: #fff;
+  color: #344054;
+}
